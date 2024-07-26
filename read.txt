@@ -1,0 +1,45 @@
+Introduction
+This is a rael estate project developed using Django framework. The project aims to create a platform for managing and listing properties.This platform includes functionalities for creating, retrieving, updating, and deleting real estate listings. 
+The project features a centralized main.html template with a navigation bar, a full-screen image, and dynamic property details that update as new listings are added or existing ones are modified.
+ 
+Installation Django 
+step 1: First create virtual environment by running command:"python -m virtualenv venv".
+
+step 2: Activate virtual by running command:".\venv\Scripts\activate".
+
+step 3: Install Django by running command:"pip install Django".
+
+step 4: Create Django project:"django-admin startproject real_estate ."
+
+step 5: Create a app:"python manage.py startapp listings".
+
+step 6: Add code in models.py 
+from django.db import models
+# Create your models here.
+class Listing(models.Model):
+    title = models.CharField(max_length=150)
+    price = models.IntegerField()
+    num_bathrooms = models.IntegerField()
+    num_bedrooms = models.IntegerField()
+    square_foot = models.IntegerField()
+    address = models.CharField(max_length=150)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+The __str__ method is used to specify the string representation of the model. In this case, we are returning the title of the listing.
+
+step 7: Run migrations:"python manage.py makemigrations" and "python manage.py migrate".
+
+step 8: Register models in admin.py 
+from django.contrib import admin
+from .models import Listing
+# Register your models here.
+admin.site.register(Listing)
+
+step 8: And create an admin user:"python manage.py createsuperuser".
+
+step 9: Run at server:"python manage.py runserver".
+
+
+
